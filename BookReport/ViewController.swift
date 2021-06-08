@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let queryValue: String = searchField.text!
         requestAPIToNaver(queryValue: queryValue)
         view.endEditing(true)
+        searchField.text = ""
     }
     
     let jsconDecoder: JSONDecoder = JSONDecoder()
