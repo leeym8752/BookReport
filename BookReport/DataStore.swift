@@ -2,36 +2,35 @@
 //  DataStore.swift
 //  BookReport
 //
-//  Created by 이예민 on 2021/06/08.
+//  Created by 이예민 on 2021/06/15.
 //
 
 import Foundation
 
-class dataManager {
+struct Response: Codable {
+    let total: Int
+    let books: [Book]
     
-    static let shared: dataManager = dataManager()
-    var searchResult: SearchResult?
-    
-    private init () {
+    enum CodingKeys: String, CodingKey {
+        case total
+        case books = "items"
     }
-    
 }
 
-struct SearchResult: Codable {
-    struct BookInfo: Codable {
-        let title: String
-        let link: String
-        let image: String
-        let author: String
-        let price: String
-        let publisher: String
-        let pubdate: String
-        let isbn: String
-        let description: String
+struct Book: Codable {
+    let title: String
+    let description: String
+    let author: String
+    let publisher: String
+    let thumbnailPath: String
+//    let previewURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case description = "description"
+        case author = "author"
+        case publisher = "publisher"
+        case thumbnailPath = "image"
+//        case previewURL = "previewUrl"
     }
-    let lastBuildDate: String
-    let total: Int
-    let start: Int
-    let display: Int
-    let items: [BookInfo]
 }
